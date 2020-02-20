@@ -11,6 +11,10 @@ Authentication.init({
   token: {
     type: Sequelize.STRING,
     allowNull: false
+  },
+  define: {
+    type: Sequelize.TEXT,
+    allowNull: false
   }
 }, {
   sequelize,

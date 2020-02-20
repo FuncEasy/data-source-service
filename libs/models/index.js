@@ -2,7 +2,7 @@ const { Sequelize } = require('sequelize');
 const username = 'root';
 const password = process.env.DATABASE_PASSWORD || 'administrator';
 const host = process.env.DATABASE_HOST || 'localhost';
-const sequelize = new Sequelize('funceasy_customer_data_source', username, password, {
+const sequelize = new Sequelize('funceasy_custom_data_source', username, password, {
   host: host,
   dialect: 'mysql',
   port: 3306,

@@ -19,5 +19,5 @@ const mod2 = {
 
 let a = DynamicCreateModule.initModule("dsadkjhsa", mod1);
 let b = DynamicCreateModule.initModule("dsadkjhsa", mod2);
-a.findAll();
-console.log();
+
+console.log(a.findAll());

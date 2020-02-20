@@ -14,7 +14,6 @@ class DynamicCreateModule {
     Object.keys(moduleDefine).forEach(column => {
       moduleDefine[column].type = _TypeMap[moduleDefine[column].type]
     });
-    console.log(moduleDefine);
     class _tmpClass extends Model{}
     _tmpClass.init(moduleDefine, {
       sequelize,
