@@ -23,7 +23,7 @@ function TokenVerify(token) {
     if (process.env.NODE_ENV === 'dev') {
       publicKeyPath = path.join(__dirname, '..', '..', 'dev', 'data_source.public.key')
     } else {
-      publicKeyPath = '/data_source_access/data_source.rsa_public.key'
+      publicKeyPath = '/data_source_access/data_source.public.key'
     }
     if (!PUBLIC_KEY) PUBLIC_KEY = fs.readFileSync(publicKeyPath, 'utf8');
     jwt.verify(token, PUBLIC_KEY, {

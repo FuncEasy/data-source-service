@@ -1,5 +1,5 @@
 const Router = require('koa-router');
-const DynamicCreateModule = require('../../libs/models/DynamicCreateModule');
+const DynamicCreateModule = require('../libs/models/DynamicCreateModule');
 const CustomDataOperateCheck = require('../middleware/CustomDataOperateCheck');
 let router = new Router();
 

@@ -1,7 +1,7 @@
 const Router = require('koa-router');
-const DynamicCreateModule = require('../../libs/models/DynamicCreateModule');
-const sequelize = require('../../libs/models');
-const Authentication = require('../../libs/models/authentication');
+const DynamicCreateModule = require('../libs/models/DynamicCreateModule');
+const sequelize = require('../libs/models');
+const Authentication = require('../libs/models/authentication');
 const AdminDataSourceOperateCheck = require('../middleware/AdminDataSourceOperateCheck');
 const uuidV4 = require('uuid/v4');
 let router = new Router();
@@ -55,6 +55,17 @@ router.post('/update', AdminDataSourceOperateCheck, async ctx => {
     await customModule.sync({
       alter: true
     });
+    let defineObj = await Authentication.findOne({where: {dataSourceName: dataSourceId}});
+    if (!defineObj) {
+      ctx.status = 422;
+      ctx.body = {
+        err: "Not Found",
+        message: "Data Source Define Not Found"
+      };
+      return;
+    }
+    defineObj.define = JSON.stringify(dataSourceDefine);
+    await defineObj.save();
     ctx.body = {
       message: "success"
     };
