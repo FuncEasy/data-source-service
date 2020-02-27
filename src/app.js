@@ -2,7 +2,7 @@ const Koa = require('koa');
 const router = require('./routes');
 const koaBody = require('koa-body');
 const logger = require('koa-logger');
-const AuthenticationDataSource = require('./libs/models/authentication');
+const AuthenticationDataSource = require('./libs/models/Authentication');
 const port = process.env.DATA_SOURCE_SERVICE_PORT || 8081;
 const handler = async (ctx, next) => {
   try {

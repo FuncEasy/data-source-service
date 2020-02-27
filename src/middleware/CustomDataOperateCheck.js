@@ -1,4 +1,4 @@
-const Authentication = require('../libs/models/authentication');
+const Authentication = require('../libs/models/Authentication');
 module.exports = async function (ctx, next) {
   let token = ctx.request.headers['authentication'] || ctx.request.headers['Authentication'];
   const id = ctx.params.id;

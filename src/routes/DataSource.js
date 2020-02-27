@@ -1,7 +1,7 @@
 const Router = require('koa-router');
 const DynamicCreateModule = require('../libs/models/DynamicCreateModule');
 const sequelize = require('../libs/models');
-const Authentication = require('../libs/models/authentication');
+const Authentication = require('../libs/models/Authentication');
 const AdminDataSourceOperateCheck = require('../middleware/AdminDataSourceOperateCheck');
 const uuidV4 = require('uuid/v4');
 let router = new Router();
@@ -89,7 +89,7 @@ router.del('/:id', AdminDataSourceOperateCheck, async ctx => {
     return
   }
   try {
-    await sequelize.query(`DROP TABLE ${id};`);
+    await sequelize.query('DROP TABLE `'+ id + '`;');
     await Authentication.destroy({ where: {dataSourceName: id}});
     ctx.body = {
       message: "success"
@@ -103,7 +103,7 @@ router.del('/:id', AdminDataSourceOperateCheck, async ctx => {
   }
 });
 
-router.get('/token/:id', async ctx => {
+router.get('/token/:id', AdminDataSourceOperateCheck, async ctx => {
   const id = ctx.params.id;
   if (!id) {
     ctx.status = 422;

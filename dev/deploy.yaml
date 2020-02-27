@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: funceasy
+  name: data-source-service
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 8081
+  selector:
+    app: data-source-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: funceasy
+  name: data-source-service
+spec:
+  selector:
+    matchLabels:
+      app: data-source-service
+  template:
+    metadata:
+      labels:
+        app: data-source-service
+    spec:
+      containers:
+        - image: ziqiancheng/data-source-service
+          name: data-source-service
+          env:
+            - name: DATABASE_PASSWORD
+              value: administrator
+            - name: DATABASE_HOST
+              value: funceasy-mysql
+          ports:
+            - containerPort: 8081
+          volumeMounts:
+            - name: data-source-access
+              mountPath: /data_source_access
+      volumes:
+        - name: data-source-access
+          secret:
+            secretName: data-source-access
