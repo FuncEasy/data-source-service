@@ -1,2 +1,2 @@
 # data-source-service
-Custom Data Service For Function CRD
+Custom Data Service For Functions
